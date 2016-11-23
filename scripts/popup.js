@@ -6,12 +6,13 @@ window.onload = function() {
 
   btn.addEventListener('click', function() {
     chrome.extension.sendRequest({
-      type: add}, function(response) {
+      type: 'add'
+    }, function(response) {
       if (response.success) {
         window.close();
       } else {
         console.log('failed');
       }
     });
-  })
+  });
 }

@@ -1,6 +1,6 @@
 'use strict';
 
-chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
+chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 
   if (request.type === 'add') {
 
@@ -8,7 +8,7 @@ chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
     var base = 'http://localhost:8888/feedit/api?type=add&';
 
     chrome.tabs.getSelected(null, function(tab){
-      
+
       var url = tab.url;
       var title = tab.title;
       var requestUrl = base + 'title=' + title + '&url=' + url;
@@ -18,7 +18,7 @@ chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
       xhr.onload = function() {
         var isSuccess = xhr.response.success;
         if (isSuccess) {
-          sendResponse({success :  true});
+          sendResponse({success : true});
         } else {
           sendResponse({success: false});
         }
@@ -27,5 +27,6 @@ chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
 
     });
   }
+  return true;
 });
 

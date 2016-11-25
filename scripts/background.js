@@ -5,7 +5,7 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
   if (request.type === 'add') {
 
     var xhr = new XMLHttpRequest();
-    var base = 'http://localhost:8888/feedit/api?type=add&';
+    var base = 'http://localhost:8080/feedit/api?type=add&';
 
     chrome.tabs.getSelected(null, function(tab){
 
